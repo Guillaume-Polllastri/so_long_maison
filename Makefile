@@ -6,35 +6,25 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/05/30 10:11:53 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/04 18:03:30 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-# Source files
-SRCS = src/main.c
-OBJS = $(SRCS:.c=.o)
+SRC = main.c get_next_line.c get_next_line_utils.c
+OBJ = $(SRC:.c=.o)
 
-# MLX42 paths
-MLX_DIR = MLX42
-MLX_BUILD = $(MLX_DIR)/build
-MLX_INC = -I$(MLX_DIR)/include
-MLX_LIB = -L$(MLX_BUILD) -lmlx42
+CFLAGS = -Wall -Werror -Wextra -I./MLX42/include/MLX42
+LDFLAGS = -L./MLX42/build -lmlx42 -lglfw -ldl -lm
 
-# Compiler flags
-CFLAGS = -Wall -Wextra -Werror $(MLX_INC)
-LDFLAGS = $(MLX_LIB) -ldl -lglfw -lm -pthread
-
-# Compile your binary
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@make -C $(MLX_DIR)/build # build MLX42 if not done
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(CFLAGS) $(LDFLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
