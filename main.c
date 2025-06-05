@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/04 19:33:55 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/05 09:19:28 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_data;
+
+typedef enum {
+	EMPTY = '0',
+	WALL = '1',
+	COLLECTIBLE = 'C',
+	PLAYER = 'P',
+	ENNEMY = 'E'
+}	elem_t;
 
 void	put_case(t_data img, int x, int y, char c)
 {
@@ -83,7 +91,7 @@ void	write_case_x(t_data img, int size_x, int size_y)
 			while (x < (i *(WIDTH / size_x)))
 			{
 				y = (i - 1) * (HEIGHT / size_y);
-				while (y < (j * (HEIGHT / size_y)))
+				while (y < (1 * (HEIGHT / size_y)))
 				{
 					put_case(img, x, y, c);
 					y++;
