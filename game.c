@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/09 16:52:39 by gpollast         ###   ########.fr       */
+/*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
+/*   Updated: 2025/06/09 16:53:33 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
+#include "mlx.h"
 
-int	main(void)
+int	game_open_window(t_game *game, int width, int height)
 {
-	t_map	map;
-	t_game	game;
+	game->mlx_win = mlx_new_window(game->mlx, width, height, "so long.....");
+	if (!game->mlx_win)
+		return (0);
+	return (1);
+}
 
-	if (!parse_map(&map, "maps/map1.ber"))
-		return (1);
-	print_map(&map);
-	if (!game_init(&game, &map))
-		return (1);
-	if (!game_open_window(&game, 800, 600))
-		return (1);
-	if (!game_loop(&game))
-		return (1);
-	return (0);
+int	game_init(t_game *game, t_map *map)
+{
+	game->mlx = mlx_init();
+	game->map = map;
+	if (!game->mlx || !game->map)
+		return (0);
+	return (1);
+}
+
+int	game_loop(t_game *game)
+{
+	mlx_loop(game->mlx);
+	return (1);
 }

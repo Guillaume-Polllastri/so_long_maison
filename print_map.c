@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/09 16:52:39 by gpollast         ###   ########.fr       */
+/*   Created: 2025/06/09 13:37:24 by gpollast          #+#    #+#             */
+/*   Updated: 2025/06/09 16:07:36 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
+#include "ft_printf.h"
 
-int	main(void)
+int	print_map(t_map *map)
 {
-	t_map	map;
-	t_game	game;
+	size_t	x;
+	size_t	y;
 
-	if (!parse_map(&map, "maps/map1.ber"))
-		return (1);
-	print_map(&map);
-	if (!game_init(&game, &map))
-		return (1);
-	if (!game_open_window(&game, 800, 600))
-		return (1);
-	if (!game_loop(&game))
-		return (1);
+	y = 0;
+	ft_printf("heigth %d\n", map->heigth);
+	ft_printf("width %d\n", map->width);
+	while (y < map->heigth)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			ft_printf("%c", map->data[y][x] + '0');
+			x++;
+		}
+		ft_printf("\n");
+		y++;
+	}
 	return (0);
 }

@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/09 16:52:39 by gpollast         ###   ########.fr       */
+/*   Created: 2025/06/09 10:51:11 by gpollast          #+#    #+#             */
+/*   Updated: 2025/06/09 15:06:59 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "libft.h"
 
-int	main(void)
+void	*ft_realloc(void *ptr, size_t old_elm, size_t new_elm, size_t size_elm)
 {
-	t_map	map;
-	t_game	game;
+	void	*new_ptr;
 
-	if (!parse_map(&map, "maps/map1.ber"))
-		return (1);
-	print_map(&map);
-	if (!game_init(&game, &map))
-		return (1);
-	if (!game_open_window(&game, 800, 600))
-		return (1);
-	if (!game_loop(&game))
-		return (1);
-	return (0);
+	new_ptr = malloc(size_elm * new_elm);
+	if (ptr && new_ptr)
+	{
+		ft_memcpy(new_ptr, ptr, old_elm * size_elm);
+		free(ptr);
+	}
+	return (new_ptr);
 }
