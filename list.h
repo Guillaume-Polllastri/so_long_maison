@@ -1,4 +1,4 @@
-#include "MLX42.h"
+#include "mlx.h"
 
 typedef struct	s_data {
 	mlx_image_t	*img;

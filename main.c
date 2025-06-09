@@ -6,11 +6,11 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/06 16:46:11 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/09 09:43:17 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
+#include "mlx.h"
 #include "list.h"
 #include "get_next_line.h"
 #include <sys/stat.h>
