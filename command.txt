@@ -1,1 +1,0 @@
-gcc main.c -I./MLX42/include/MLX42 -L./MLX42/build  -lmlx42 -lglfw -ldl -lm -o so_long
