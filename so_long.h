@@ -6,13 +6,14 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/09 18:54:46 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:09:14 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #ifndef SO_LONG_H	
 # define SO_LONG_H
+
+# include <stddef.h>
 
 typedef enum e_elem
 {
@@ -37,13 +38,20 @@ typedef struct s_size
 	int	height;
 }	t_size;
 
-typedef struct	s_img {
+typedef struct s_img
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct s_point
+{
+	unsigned long	x;
+	unsigned long	y;
+}	t_point;
 
 typedef struct s_game
 {
