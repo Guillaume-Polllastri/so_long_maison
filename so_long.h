@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/10 17:32:40 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:14:55 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int		game_loop(t_game *game);
 int		game_init(t_game *game, t_map *map);
 int		game_open_window(t_game *game, int width, int height);
 void	draw_frame(t_game *game);
-int		ft_key_hook(int keycode, t_game *game);
+int		ft_key_hook(int keycode, t_game *game, t_point *player);
 
 #endif
