@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/09 16:53:33 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:53:10 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int	game_open_window(t_game *game, int width, int height)
 {
+	game->win_size.width = width;
+	game->win_size.height = height;
 	game->mlx_win = mlx_new_window(game->mlx, width, height, "so long.....");
 	if (!game->mlx_win)
 		return (0);
@@ -32,6 +34,7 @@ int	game_init(t_game *game, t_map *map)
 
 int	game_loop(t_game *game)
 {
+	draw_frame(game);
 	mlx_loop(game->mlx);
 	return (1);
 }
