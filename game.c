@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/09 18:53:10 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:51:43 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	game_init(t_game *game, t_map *map)
 int	game_loop(t_game *game)
 {
 	draw_frame(game);
+	mlx_key_hook(game->mlx_win, close, game);
 	mlx_loop(game->mlx);
 	return (1);
 }
