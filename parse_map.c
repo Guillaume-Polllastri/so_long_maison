@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/11 08:44:12 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:09:06 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ static int	parse_line(t_map *map, char *line)
 		else if (line[i] == 'C')
 			map->data[map->heigth][i] = COLLECTIBLE;
 		else if (line[i] == 'E')
+		{
+			map->end.x = i;
+			map->end.y = map->heigth;
 			map->data[map->heigth][i] = EXIT;
+		}
 		else if (line[i] == 'M')
 			map->data[map->heigth][i] = MONSTER;
 		else if (line[i] != '\n')

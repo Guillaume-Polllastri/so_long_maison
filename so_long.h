@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/11 08:40:06 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:07:34 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_map
 	size_t		heigth;
 	t_elem		**data;
 	t_point		player;
+	t_point		end;
 }	t_map;
 
 typedef struct s_size
@@ -70,6 +71,7 @@ typedef struct s_game
 	void	*mlx;
 	t_map	*map;
 	t_size	win_size;
+	t_img	img;
 }	t_game;
 
 int		parse_map(t_map *map, char *path);
@@ -78,7 +80,9 @@ int		print_map(t_map *map);
 int		game_loop(t_game *game);
 int		game_init(t_game *game, t_map *map);
 int		game_open_window(t_game *game, int width, int height);
-void	draw_frame(t_game *game);
+int		draw_frame(t_game *game);
 int		ft_key_hook(int keycode, t_game *game);
+void	draw_player(t_game *game);
+void	game_destroy(t_game *game);
 
 #endif
