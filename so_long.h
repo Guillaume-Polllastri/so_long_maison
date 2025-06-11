@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/10 18:14:55 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/11 08:40:06 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,18 @@ typedef enum e_elem
 	EXIT
 }	t_elem;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
 typedef struct s_map
 {
 	size_t		width;
 	size_t		heigth;
 	t_elem		**data;
+	t_point		player;
 }	t_map;
 
 typedef struct s_size
@@ -57,12 +64,6 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef struct s_point
-{
-	unsigned long	x;
-	unsigned long	y;
-}	t_point;
-
 typedef struct s_game
 {
 	void	*mlx_win;
@@ -78,6 +79,6 @@ int		game_loop(t_game *game);
 int		game_init(t_game *game, t_map *map);
 int		game_open_window(t_game *game, int width, int height);
 void	draw_frame(t_game *game);
-int		ft_key_hook(int keycode, t_game *game, t_point *player);
+int		ft_key_hook(int keycode, t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/10 18:45:58 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/11 08:44:12 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static size_t	ft_strlen_no_nl(char *str)
 static int	parse_line(t_map *map, char *line)
 {
 	int		i;
-	t_point	player;
 
 	map->data = ft_realloc(map->data, map->heigth, map->heigth + 1,
 			sizeof(t_elem *));
@@ -45,9 +44,9 @@ static int	parse_line(t_map *map, char *line)
 			map->data[map->heigth][i] = WALL;
 		else if (line[i] == 'P')
 		{
-			player.x = i;
-			player.y = map->heigth;
-			map->data[map->heigth][i] = PLAYER;
+			map->player.x = i;
+			map->player.y = map->heigth;
+			map->data[map->heigth][i] = PATH;
 		}
 		else if (line[i] == 'C')
 			map->data[map->heigth][i] = COLLECTIBLE;

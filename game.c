@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/10 17:40:41 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/11 09:05:28 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	game_open_window(t_game *game, int width, int height)
 	if (!game->mlx_win)
 		return (0);
 	mlx_key_hook(game->mlx_win, ft_key_hook, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
 	return (1);
 }
 
