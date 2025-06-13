@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/13 14:52:19 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:19:02 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ int	parse_map(t_map *map, char *path)
 		}
 		if (!parse_line(map, line))
 			return (0);
-		if (!check_wall(map))
-		{
-			ft_printf("La map n'est pas entoure de mur\n");
-			return (0);
-		}
 		line = get_next_line(fd);
+	}
+	if (!check_wall(map))
+	{
+		ft_printf("La map n'est pas entoure de mur\n");
+		return (0);
 	}
 	return (1);
 }
-//TODO Gerer les rectangles et que ya des murs
+//TODO Gerer les rectangles
