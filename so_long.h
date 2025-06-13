@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/12 11:16:26 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:44:38 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_map
 	t_point		player;
 	t_point		end;
 	int			nb_collect;
+	int			nb_player;
+	int			nb_exit;
 }	t_map;
 
 typedef struct s_size

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/13 15:19:02 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:50:51 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	parse_line(t_map *map, char *line)
 		{
 			map->player.x = i;
 			map->player.y = map->heigth;
+			map->nb_player++;
 			map->data[map->heigth][i] = PATH;
 		}
 		else if (line[i] == 'C')
@@ -57,6 +58,7 @@ static int	parse_line(t_map *map, char *line)
 		{
 			map->end.x = i;
 			map->end.y = map->heigth;
+			map->nb_exit++;
 			map->data[map->heigth][i] = EXIT;
 		}
 		else if (line[i] == 'M')
@@ -69,6 +71,26 @@ static int	parse_line(t_map *map, char *line)
 		i++;
 	}
 	map->heigth += 1;
+	return (1);
+}
+
+static int	check_nb_entity(t_map *map)
+{
+	if (map->nb_player != 1)
+	{
+		ft_printf("The game requires 1 Player\n");
+		return (0);
+	}
+	if (map->nb_exit != 1)
+	{
+		ft_printf("The game requires 1 Exit\n");
+		return (0);
+	}
+	if (!map->nb_collect)
+	{
+		ft_printf("The game requires at least 1 Collectible\n");
+		return (0);
+	}
 	return (1);
 }
 
@@ -119,6 +141,8 @@ int	parse_map(t_map *map, char *path)
 		ft_printf("La map n'est pas entoure de mur\n");
 		return (0);
 	}
+	if (!check_nb_entity(map))
+		return (0);
 	return (1);
 }
 //TODO Gerer les rectangles
