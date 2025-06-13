@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/13 15:44:38 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:05:59 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int		draw_frame(t_game *game);
 int		ft_key_hook(int keycode, t_game *game);
 void	draw_player(t_game *game);
 void	game_destroy(t_game *game);
+int 	check_map_is_rectangle(t_map *map);
 
 #endif

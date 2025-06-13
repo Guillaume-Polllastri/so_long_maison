@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/13 15:53:46 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:12:49 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ static int	check_nb_entity(t_map *map)
 	if (!map->nb_collect)
 	{
 		ft_printf("The game requires at least 1 Collectible\n");
+		return (0);
+	}
+	if (map->heigth == map->width)
+	{
+		ft_printf("Size of the map is not a rectangle\n");
 		return (0);
 	}
 	return (1);

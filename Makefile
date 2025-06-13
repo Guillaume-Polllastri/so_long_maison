@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/06/10 14:25:51 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/13 16:11:05 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC = 	main.c \
 		utils.c \
 		game.c \
 		draw.c \
-		key_hook.c
+		key_hook.c \
+		parse_map_utils.c
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -I./minilibx-linux
