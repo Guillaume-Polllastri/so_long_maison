@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/13 15:50:51 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:53:46 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,20 @@ static int	check_wall(t_map *map)
 	{
 		if ((map->data[0][i] != WALL) ||
 			(map->data[map->heigth - 1][i] != WALL))
+		{
+			ft_printf("La map n'est pas entoure de mur\n");	
 			return (0);
+		}
 		i++;
 	}
 	i = 1;
 	while (i < map->heigth)
 	{
 		if ((map->data[i][0] != WALL) || (map->data[i][map->width -1] != WALL))
+		{
+			ft_printf("La map n'est pas entoure de mur\n");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -137,10 +143,7 @@ int	parse_map(t_map *map, char *path)
 		line = get_next_line(fd);
 	}
 	if (!check_wall(map))
-	{
-		ft_printf("La map n'est pas entoure de mur\n");
 		return (0);
-	}
 	if (!check_nb_entity(map))
 		return (0);
 	return (1);
