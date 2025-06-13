@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/11 18:09:06 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:43:43 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static int	parse_line(t_map *map, char *line)
 			map->data[map->heigth][i] = PATH;
 		}
 		else if (line[i] == 'C')
+		{
+			map->nb_collect++;
 			map->data[map->heigth][i] = COLLECTIBLE;
+		}
 		else if (line[i] == 'E')
 		{
 			map->end.x = i;
@@ -60,13 +63,18 @@ static int	parse_line(t_map *map, char *line)
 			map->data[map->heigth][i] = MONSTER;
 		else if (line[i] != '\n')
 		{
-			ft_printf ("Read error, unknown element : %c\n", line[i]);
+			ft_printf("Read error, unknown element : %c\n", line[i]);
 			return (0);
 		}
 		i++;
 	}
 	map->heigth += 1;
 	return (1);
+}
+
+static int	check_wall(t_map *map)
+{
+	
 }
 
 int	parse_map(t_map *map, char *path)
