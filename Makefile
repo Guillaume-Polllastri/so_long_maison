@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/06/13 16:11:05 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/14 13:54:47 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = 	main.c \
 		parse_map_utils.c
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra -I./minilibx-linux
+CFLAGS = -Wall -Werror -Wextra -I./minilibx-linux -g
 LDFLAGS = -L./minilibx-linux -lmlx -L. -lftprintf -lX11 -lXext -lm
 
 all: $(NAME)

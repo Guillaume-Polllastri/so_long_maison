@@ -6,12 +6,32 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/11 18:13:53 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:09:01 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
+#include "ft_printf.h"
+
+static int	game_do_loop(t_game *game)
+{
+	int	row;
+	int	col;
+	int	count;
+
+	row = game->map->player.y;
+	col = game->map->player.x;
+	count = game->map->count_collect;
+	if (game->map->data[row][col] == EXIT && count == game->map->nb_collect)
+	{
+		ft_printf("GG YOU WIN!!!!!!!!");
+		mlx_destroy_window(game->mlx, game->mlx_win);
+		return (0);
+	}
+	draw_frame(game);
+	return (1);
+}
 
 int	game_open_window(t_game *game, int width, int height)
 {
@@ -26,7 +46,7 @@ int	game_open_window(t_game *game, int width, int height)
 		return (0);
 	if (!mlx_key_hook(game->mlx_win, ft_key_hook, game))
 		return (0);
-	mlx_loop_hook(game->mlx, draw_frame, game);
+	mlx_loop_hook(game->mlx, game_do_loop, game);
 	return (1);
 }
 
@@ -47,6 +67,7 @@ int	game_init(t_game *game, t_map *map)
 {
 	game->mlx = mlx_init();
 	game->map = map;
+	game->map->count_collect = 0;
 	if (!game->mlx || !game->map)
 		return (0);
 	return (1);
@@ -54,7 +75,7 @@ int	game_init(t_game *game, t_map *map)
 
 int	game_loop(t_game *game)
 {
-	draw_frame(game);
+
 	mlx_loop(game->mlx);
 	return (1);
 }
