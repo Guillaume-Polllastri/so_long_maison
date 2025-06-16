@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/13 16:12:49 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:17:30 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ int	parse_map(t_map *map, char *path)
 		}
 		if (!parse_line(map, line))
 			return (0);
+		// flood_fill(map);
+		// ft_printf("nbcollect %d\n", (int) map->nb_collect);
 		line = get_next_line(fd);
 	}
 	if (!check_wall(map))
