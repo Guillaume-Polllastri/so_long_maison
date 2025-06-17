@@ -6,13 +6,14 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/17 11:56:24 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/17 22:08:08 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
@@ -46,6 +47,10 @@ void	draw_player(t_game *game)
 	pixel.y = 0;
 	len_y = game->win_size.height / game->map->heigth;
 	len_x = game->win_size.width / game->map->width;
+	if (len_x < len_y)
+		len_y = len_x;
+	else if (len_y < len_x)
+		len_x = len_y;
 	pixel.y = game->map->player.y * len_y;
 	while (pixel.y < (int)((game->map->player.y + 1) * len_y))
 	{
@@ -65,10 +70,13 @@ static void	draw_entity(t_game *game, t_point *point)
 	size_t	len_y;
 	size_t	len_x;
 
-	pixel.x = 0;
-	pixel.y = 0;
 	len_y = game->win_size.height / game->map->heigth;
 	len_x = game->win_size.width / game->map->width;
+	if (len_x < len_y)
+		len_y = len_x;
+	else if (len_y < len_x)
+		len_x = len_y;
+	pixel.x = game->win_size.width - len_x;
 	pixel.y = point->y * len_y;
 	while (pixel.y < (int)((point->y + 1) * len_y))
 	{
