@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/17 22:08:08 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:35:28 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	draw_player(t_game *game)
 	t_point	pixel;
 	size_t	len_y;
 	size_t	len_x;
+	size_t	toto;
 
 	pixel.x = 0;
 	pixel.y = 0;
@@ -51,8 +52,9 @@ void	draw_player(t_game *game)
 		len_y = len_x;
 	else if (len_y < len_x)
 		len_x = len_y;
-	pixel.y = game->map->player.y * len_y;
-	while (pixel.y < (int)((game->map->player.y + 1) * len_y))
+	toto = (game->win_size.height - (5 * len_y)) / 2;
+	pixel.y = game->map->player.y * len_y + toto;
+	while (pixel.y < (int)((game->map->player.y + 1) * len_y + toto))
 	{
 		pixel.x = game->map->player.x * (game->win_size.width / game->map->width);
 		while (pixel.x < (int)((game->map->player.x + 1) * len_x))
@@ -69,6 +71,7 @@ static void	draw_entity(t_game *game, t_point *point)
 	t_point	pixel;
 	size_t	len_y;
 	size_t	len_x;
+	size_t	toto;
 
 	len_y = game->win_size.height / game->map->heigth;
 	len_x = game->win_size.width / game->map->width;
@@ -76,9 +79,9 @@ static void	draw_entity(t_game *game, t_point *point)
 		len_y = len_x;
 	else if (len_y < len_x)
 		len_x = len_y;
-	pixel.x = game->win_size.width - len_x;
-	pixel.y = point->y * len_y;
-	while (pixel.y < (int)((point->y + 1) * len_y))
+	toto = (game->win_size.height - (5 * len_y)) / 2;
+	pixel.y = point->y * len_y + toto;
+	while (pixel.y < (int)((point->y + 1) * len_y + toto))
 	{
 		pixel.x = point->x * (game->win_size.width / game->map->width);
 		while (pixel.x < (int)((point->x + 1) * len_x))
@@ -94,6 +97,7 @@ int	draw_frame(t_game *game)
 {
 	t_point	point;
 
+	draw_background(game);
 	point.x = 0;
 	point.y = 0;
 	while ((size_t) point.y < game->map->heigth)
@@ -110,4 +114,22 @@ int	draw_frame(t_game *game)
 	// game->img.img = mlx_xpm_file_to_image(game->mlx, "./texture/Tilemap_color1.xpm", &game->img.width_text, &game->img.height_text);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
 	return (0);
+}
+int	draw_background(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->win_size.height)
+	{
+		x = 0;
+		while (x < game->win_size.width)
+		{
+			my_mlx_pixel_put(&game->img, x, y, 0x851c1c);
+			x++;
+		}
+		y++;
+	}
+	return (1);
 }

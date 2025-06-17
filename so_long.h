@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/17 22:23:08 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:31:13 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int		ft_key_hook(int keycode, t_game *game);
 void	draw_player(t_game *game);
 void	game_destroy(t_game *game);
 void	flood_fill(t_map *map);
+int		draw_background(t_game *game);
 
 #endif
