@@ -6,12 +6,13 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/11 14:32:50 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/17 11:56:24 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
+#include <stdlib.h>
 
 static void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
@@ -98,6 +99,7 @@ int	draw_frame(t_game *game)
 		point.y++;
 	}
 	draw_player(game);
+	// game->img.img = mlx_xpm_file_to_image(game->mlx, "./texture/Tilemap_color1.xpm", &game->img.width_text, &game->img.height_text);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
 	return (0);
 }

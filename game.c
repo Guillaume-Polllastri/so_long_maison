@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/16 18:20:10 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/17 11:34:40 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,11 @@ int	game_init(t_game *game, t_map *map)
 	game->map->count_collect = 0;
 	if (!game->mlx || !game->map)
 		return (0);
-	mlx_xpm_file_to_image(game->mlx, "./texture/Tilemap_color1.xpm", (int *) &game->map->width, (int *) & game->map->heigth);
 	return (1);
 }
 
 int	game_loop(t_game *game)
 {
-
 	mlx_loop(game->mlx);
 	return (1);
 }
