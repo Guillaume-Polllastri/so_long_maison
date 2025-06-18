@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/17 23:31:13 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:29:40 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_map
 	int			count_collect;
 	int			nb_player;
 	int			nb_exit;
+	int			nb_test_collectible;
+	int			nb_test_exit;
 }	t_map;
 
 typedef struct s_size
@@ -86,11 +88,11 @@ int		print_map(t_map *map);
 int		game_loop(t_game *game);
 int		game_init(t_game *game, t_map *map);
 int		game_open_window(t_game *game, int width, int height);
-int		draw_frame(t_game *game);
-int		ft_key_hook(int keycode, t_game *game);
-void	draw_player(t_game *game);
 void	game_destroy(t_game *game);
-void	flood_fill(t_map *map);
+int		draw_frame(t_game *game);
 int		draw_background(t_game *game);
+void	draw_player(t_game *game);
+int		ft_key_hook(int keycode, t_game *game);
+int		flood_fill(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/16 19:08:55 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:13:20 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,14 +145,17 @@ int	parse_map(t_map *map, char *path)
 		}
 		if (!parse_line(map, line))
 			return (0);
-		// flood_fill(map);
-		// ft_printf("nbcollect %d\n", (int) map->nb_collect);
 		line = get_next_line(fd);
 	}
 	if (!check_wall(map))
 		return (0);
 	if (!check_nb_entity(map))
 		return (0);
+	if (!flood_fill(map))
+	{
+		ft_printf("Collectible or exit are not accessible\n");
+		return (0);
+	}
 	return (1);
 }
 //TODO Gerer les rectangles

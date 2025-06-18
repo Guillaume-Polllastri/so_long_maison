@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/17 23:35:28 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:44:42 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	draw_frame(t_game *game)
 		point.y++;
 	}
 	draw_player(game);
-	// game->img.img = mlx_xpm_file_to_image(game->mlx, "./texture/Tilemap_color1.xpm", &game->img.width_text, &game->img.height_text);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
 	return (0);
 }
