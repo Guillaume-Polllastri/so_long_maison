@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:50:03 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 12:21:25 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:05:53 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include "ft_printf.h"
+#include "libft.h"
 
 static void	key_move(int keycode, t_game *game, int row, int col)
 {
@@ -51,6 +52,14 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 	}
 }
 
+static void	step_count(t_game *game, int tmp)
+{
+	if (tmp != game->map->player.step)
+	{
+		tmp = game->map->player.step;
+	}
+}
+
 int	close_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->mlx_win);
@@ -78,10 +87,6 @@ int	ft_key_hook(int keycode, t_game *game)
 		exit(0);
 	}
 	key_move(keycode, game, row, col);
-	if (tmp != game->map->player.step)
-	{
-		tmp = game->map->player.step;
-		ft_printf("%d\n", game->map->player.step);
-	}
+	step_count(game, tmp);
 	return (0);
 }

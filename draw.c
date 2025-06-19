@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 10:03:56 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:09:51 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "libft.h"
 
 static void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
@@ -93,6 +94,11 @@ static void	draw_entity(t_game *game, t_point *point)
 	}
 }
 
+static int	draw_step
+{
+
+}
+
 int	draw_frame(t_game *game)
 {
 	t_point	point;
@@ -112,6 +118,7 @@ int	draw_frame(t_game *game)
 	}
 	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
+	mlx_string_put(game->mlx, game->mlx_win, game->win_size.width / 2, 10, 0xd9c407, ft_itoa(game->map->player.step));
 	return (0);
 }
 int	draw_background(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 12:21:32 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:05:42 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef enum e_elem
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	step;
+	int		x;
+	int		y;
+	int		step;
 }	t_point;
 
 typedef struct s_map
@@ -96,5 +96,6 @@ void	draw_player(t_game *game);
 int		ft_key_hook(int keycode, t_game *game);
 int		close_window(t_game *game);
 int		flood_fill(t_map *map);
+void	ft_delay(void);
 
 #endif
