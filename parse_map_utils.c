@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:01:34 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/18 16:10:41 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 09:12:28 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@
 
 static int  fill(t_map *map, int row, int col)
 {
-	t_elem  target;
     t_elem  **tab;
     t_point size;
 
     tab = map->data;
-    target = map->data[map->player.y][map->player.x];
     size.y = map->heigth;
     size.x = map->width;
 	if (row < 0 || col < 0 || row >= size.y || col >= size.x)

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:50:03 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/14 13:47:09 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:21:25 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,53 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 	if (keycode == W || keycode == UP_ARROW)
 	{
 		if (game->map->data[row - 1][col] != WALL)
+		{
 			game->map->player.y -= 1;
+			game->map->player.step++;
+		}
 	}
 	if (keycode == A || keycode == LEFT_ARROW)
 	{
 		if (game->map->data[row][col - 1] != WALL)
+		{
 			game->map->player.x -= 1;
+			game->map->player.step++;
+		}
 	}
 	if (keycode == S || keycode == DOWN_ARROW)
 	{
 		if (game->map->data[row + 1][col] != WALL)
+		{
 			game->map->player.y += 1;
+			game->map->player.step++;
+		}
 	}
 	if (keycode == D || keycode == RIGHT_ARROW)
 	{
 		if (game->map->data[row][col + 1] != WALL)
+		{
 			game->map->player.x += 1;
+			game->map->player.step++;
+		}
 	}
+}
+
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->mlx_win);
+	exit(0);
+	return (0);
 }
 
 int	ft_key_hook(int keycode, t_game *game)
 {
 	int			row;
 	int			col;
+	int			tmp;
 
 	row = game->map->player.y;
 	col = game->map->player.x;
-
+	tmp = game->map->player.step;
 	if (game->map->data[row][col] == COLLECTIBLE)
 	{
 		game->map->data[row][col] = PATH;
@@ -58,5 +78,10 @@ int	ft_key_hook(int keycode, t_game *game)
 		exit(0);
 	}
 	key_move(keycode, game, row, col);
+	if (tmp != game->map->player.step)
+	{
+		tmp = game->map->player.step;
+		ft_printf("%d\n", game->map->player.step);
+	}
 	return (0);
 }

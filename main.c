@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/18 10:29:47 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 09:14:01 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(void)
 	// print_map(&map);
 	if (!game_init(&game, &map))
 		return (1);
-	if (!game_open_window(&game, 800, 600))
+	if (!game_open_window(&game, 1300, 500))
 		return (1);
 	if (!game_loop(&game))
 		return (1);

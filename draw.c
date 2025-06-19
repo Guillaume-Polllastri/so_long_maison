@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/18 13:44:42 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/19 10:03:56 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	draw_entity(t_game *game, t_point *point)
 	t_point	pixel;
 	size_t	len_y;
 	size_t	len_x;
-	size_t	toto;
+	size_t	pos;
 
 	len_y = game->win_size.height / game->map->heigth;
 	len_x = game->win_size.width / game->map->width;
@@ -79,9 +79,9 @@ static void	draw_entity(t_game *game, t_point *point)
 		len_y = len_x;
 	else if (len_y < len_x)
 		len_x = len_y;
-	toto = (game->win_size.height - (5 * len_y)) / 2;
-	pixel.y = point->y * len_y + toto;
-	while (pixel.y < (int)((point->y + 1) * len_y + toto))
+	pos = (game->win_size.height - (5 * len_y)) / 2;
+	pixel.y = point->y * len_y + pos;
+	while (pixel.y < (int)((point->y + 1) * len_y + pos))
 	{
 		pixel.x = point->x * (game->win_size.width / game->map->width);
 		while (pixel.x < (int)((point->x + 1) * len_x))
