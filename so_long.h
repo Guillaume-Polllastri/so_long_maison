@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/20 11:03:47 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:07:25 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,19 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	size_t	size;
+	int		*buffer;
+	t_size	size;
 	t_point	coord;
 }	t_sprite;
 
 typedef struct s_game
 {
-	void	*mlx_win;
-	void	*mlx;
-	t_map	*map;
-	t_size	win_size;
-	t_img	img;
+	void		*mlx_win;
+	void		*mlx;
+	t_map		*map;
+	t_size		win_size;
+	t_img		img;
+	t_sprite	sprite;
 }	t_game;
 
 int		parse_map(t_map *map, char *path);
@@ -108,5 +110,6 @@ int		ft_key_hook(int keycode, t_game *game);
 int		close_window(t_game *game);
 int		flood_fill(t_map *map);
 void	ft_delay(void);
+void	sprite_init(t_game *game);
 
 #endif

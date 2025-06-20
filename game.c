@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/20 11:04:57 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:07:52 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	game_open_window(t_game *game, int width, int height)
 {
 	game->win_size.width = width;
 	game->win_size.height = height;
+	sprite_init(game);
 	game->img.img = mlx_new_image(game->mlx, game->win_size.width,
 			game->win_size.height);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
@@ -50,19 +51,6 @@ int	game_open_window(t_game *game, int width, int height)
 	mlx_loop_hook(game->mlx, game_do_loop, game);
 	return (1);
 }
-
-// void	game_destroy(t_game *game)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (game->map->data[i])
-// 		i++;
-// 	while (i >= 0)
-// 		free(game->map->data[i--]);
-// 	free(game->map->data);
-// 	free(game->img);
-// }
 
 int	game_init(t_game *game, t_map *map)
 {
