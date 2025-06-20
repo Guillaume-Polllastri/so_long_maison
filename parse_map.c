@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/18 13:13:20 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:04:28 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int	parse_line(t_map *map, char *line)
 			map->data[map->heigth][i] = WALL;
 		else if (line[i] == 'P')
 		{
-			map->player.x = i;
-			map->player.y = map->heigth;
+			map->player.coord.x = i;
+			map->player.coord.y = map->heigth;
 			map->nb_player++;
 			map->data[map->heigth][i] = PATH;
 		}

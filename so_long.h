@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 18:05:42 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:03:47 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,20 @@ typedef struct s_point
 {
 	int		x;
 	int		y;
-	int		step;
 }	t_point;
+
+typedef struct s_player
+{
+	t_point	coord;
+	int		step;
+}	t_player;
 
 typedef struct s_map
 {
 	size_t		width;
 	size_t		heigth;
 	t_elem		**data;
-	t_point		player;
+	t_player	player;
 	t_point		end;
 	int			nb_collect;
 	int			count_collect;
@@ -73,6 +78,12 @@ typedef struct s_img
 	int		width_text;
 	int		height_text;
 }				t_img;
+
+typedef struct s_sprite
+{
+	size_t	size;
+	t_point	coord;
+}	t_sprite;
 
 typedef struct s_game
 {

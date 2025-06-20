@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:50:03 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 18:05:53 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:06:59 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 	{
 		if (game->map->data[row - 1][col] != WALL)
 		{
-			game->map->player.y -= 1;
+			game->map->player.coord.y -= 1;
 			game->map->player.step++;
 		}
 	}
@@ -30,7 +30,7 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 	{
 		if (game->map->data[row][col - 1] != WALL)
 		{
-			game->map->player.x -= 1;
+			game->map->player.coord.x -= 1;
 			game->map->player.step++;
 		}
 	}
@@ -38,7 +38,7 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 	{
 		if (game->map->data[row + 1][col] != WALL)
 		{
-			game->map->player.y += 1;
+			game->map->player.coord.y += 1;
 			game->map->player.step++;
 		}
 	}
@@ -46,7 +46,7 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 	{
 		if (game->map->data[row][col + 1] != WALL)
 		{
-			game->map->player.x += 1;
+			game->map->player.coord.x += 1;
 			game->map->player.step++;
 		}
 	}
@@ -73,8 +73,8 @@ int	ft_key_hook(int keycode, t_game *game)
 	int			col;
 	int			tmp;
 
-	row = game->map->player.y;
-	col = game->map->player.x;
+	row = game->map->player.coord.y;
+	col = game->map->player.coord.x;
 	tmp = game->map->player.step;
 	if (game->map->data[row][col] == COLLECTIBLE)
 	{

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 18:09:51 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:05:41 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	draw_player(t_game *game)
 	else if (len_y < len_x)
 		len_x = len_y;
 	toto = (game->win_size.height - (5 * len_y)) / 2;
-	pixel.y = game->map->player.y * len_y + toto;
-	while (pixel.y < (int)((game->map->player.y + 1) * len_y + toto))
+	pixel.y = game->map->player.coord.y * len_y + toto;
+	while (pixel.y < (int)((game->map->player.coord.y + 1) * len_y + toto))
 	{
-		pixel.x = game->map->player.x * (game->win_size.width / game->map->width);
-		while (pixel.x < (int)((game->map->player.x + 1) * len_x))
+		pixel.x = game->map->player.coord.x * (game->win_size.width / game->map->width);
+		while (pixel.x < (int)((game->map->player.coord.x + 1) * len_x))
 		{
 			my_mlx_pixel_put(&game->img, pixel.x, pixel.y, 0x070ea3);
 			pixel.x++;
@@ -94,10 +94,10 @@ static void	draw_entity(t_game *game, t_point *point)
 	}
 }
 
-static int	draw_step
-{
+// static int	draw_step
+// {
 
-}
+// }
 
 int	draw_frame(t_game *game)
 {
@@ -121,6 +121,7 @@ int	draw_frame(t_game *game)
 	mlx_string_put(game->mlx, game->mlx_win, game->win_size.width / 2, 10, 0xd9c407, ft_itoa(game->map->player.step));
 	return (0);
 }
+
 int	draw_background(t_game *game)
 {
 	int	x;

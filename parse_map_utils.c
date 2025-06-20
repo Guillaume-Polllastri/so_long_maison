@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:01:34 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 09:12:28 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:07:22 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int	flood_fill(t_map *map)
     int     col;
     t_map   *map_cpy;
 
-    row = map->player.y;
-	col = map->player.x;
+    row = map->player.coord.y;
+	col = map->player.coord.x;
     map_cpy = copy_map(map);
 	if (!fill(map_cpy, row, col))
         return (0);

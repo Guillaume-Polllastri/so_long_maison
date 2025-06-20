@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/19 18:01:38 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:04:57 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	game_do_loop(t_game *game)
 	int	col;
 	int	count;
 
-	row = game->map->player.y;
-	col = game->map->player.x;
+	row = game->map->player.coord.y;
+	col = game->map->player.coord.x;
 	count = game->map->count_collect;
 	if (game->map->data[row][col] == EXIT && count == game->map->nb_collect)
 	{
