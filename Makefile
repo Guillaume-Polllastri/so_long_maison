@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/06/20 10:50:53 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/23 21:26:38 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SRC = 	main.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		parse_map.c \
-		print_map.c \
 		utils.c \
 		game.c \
 		draw.c \
