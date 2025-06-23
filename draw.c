@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/20 16:18:42 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:24:27 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,34 @@ static void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!(color & 0xFF))
+		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+static int	get_color_from_sprite(t_game *game, t_sprite *sprite,
+		t_point *point, t_point *pixel)
+{
+	int	pixel_sprite_x;
+	int	pixel_sprite_y;
+	int	pixel_sprite;
+	int	calcul_x;
+	int	calcul_y;
+
+	(void) point;
+	pixel_sprite_x = (pixel->x % game->box_size);
+	pixel_sprite_y = (pixel->y % game->box_size);
+	calcul_x = (pixel_sprite_x * sprite->size.width) / game->box_size;
+	calcul_y = (pixel_sprite_y * sprite->size.height) / game->box_size;
+	pixel_sprite = (calcul_y * sprite->size.width) + calcul_x;
+	return (sprite->buffer[pixel_sprite]);
 }
 
 static void	draw_color(t_game *game, t_point *point, t_point *pixel)
 {
 	if (game->map->data[point->y][point->x] == WALL)
-		my_mlx_pixel_put(&game->img, pixel->x, pixel->y, 0x851c1c);
+		my_mlx_pixel_put(&game->img, pixel->x, pixel->y, get_color_from_sprite(game, &game->sprites[SPRITE_WATER], point, pixel));
 	else if (game->map->data[point->y][point->x] == PATH)
 		my_mlx_pixel_put(&game->img, pixel->x, pixel->y, 0xFFFFFFFF);
 	else if (game->map->data[point->y][point->x] == PLAYER)
@@ -53,11 +73,12 @@ void	draw_player(t_game *game)
 		len_y = len_x;
 	else if (len_y < len_x)
 		len_x = len_y;
-	toto = (game->win_size.height - (5 * len_y)) / 2;
+	toto = (game->win_size.height - (game->map->heigth * len_y)) / 2;
+	toto = 0;
 	pixel.y = game->map->player.coord.y * len_y + toto;
 	while (pixel.y < (int)((game->map->player.coord.y + 1) * len_y + toto))
 	{
-		pixel.x = game->map->player.coord.x * (game->win_size.width / game->map->width);
+		pixel.x = game->map->player.coord.x * len_x;
 		while (pixel.x < (int)((game->map->player.coord.x + 1) * len_x))
 		{
 			my_mlx_pixel_put(&game->img, pixel.x, pixel.y, 0x070ea3);
@@ -80,11 +101,13 @@ static void	draw_entity(t_game *game, t_point *point)
 		len_y = len_x;
 	else if (len_y < len_x)
 		len_x = len_y;
-	pos = (game->win_size.height - (5 * len_y)) / 2;
+	game->box_size = len_x;
+	pos = (game->win_size.height - (game->map->heigth * len_y)) / 2;
+	pos = 0;
 	pixel.y = point->y * len_y + pos;
 	while (pixel.y < (int)((point->y + 1) * len_y + pos))
 	{
-		pixel.x = point->x * (game->win_size.width / game->map->width);
+		pixel.x = point->x * len_x;
 		while (pixel.x < (int)((point->x + 1) * len_x))
 		{
 			draw_color(game, point, &pixel);

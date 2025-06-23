@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/20 16:07:52 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/22 20:50:21 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	game_init(t_game *game, t_map *map)
 	game->map = map;
 	game->map->count_collect = 0;
 	game->map->player.step = 0;
+	sprite_init(game);
 	if (!game->mlx || !game->map)
 		return (0);
 	return (1);

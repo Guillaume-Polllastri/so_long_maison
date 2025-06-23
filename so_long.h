@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/20 15:07:25 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:26:03 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define DOWN_ARROW 65364
+
+# define SPRITE_WATER 0
 
 typedef enum e_elem
 {
@@ -75,15 +77,13 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		width_text;
-	int		height_text;
+	t_size	size;
 }				t_img;
 
 typedef struct s_sprite
 {
 	int		*buffer;
 	t_size	size;
-	t_point	coord;
 }	t_sprite;
 
 typedef struct s_game
@@ -93,7 +93,9 @@ typedef struct s_game
 	t_map		*map;
 	t_size		win_size;
 	t_img		img;
-	t_sprite	sprite;
+	t_img		asset;
+	t_sprite	sprites[4];
+	int			box_size;
 }	t_game;
 
 int		parse_map(t_map *map, char *path);
