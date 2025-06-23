@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/22 20:50:21 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:33:44 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,18 @@ static int	game_do_loop(t_game *game)
 
 int	game_open_window(t_game *game, int width, int height)
 {
+	int	len_y;
+	int	len_x;
+
 	game->win_size.width = width;
 	game->win_size.height = height;
-	sprite_init(game);
+	len_y = game->win_size.height / game->map->heigth;
+	len_x = game->win_size.width / game->map->width;
+	if (len_x < len_y)
+		len_y = len_x;
+	else if (len_y < len_x)
+		len_x = len_y;
+	game->box_size = len_x;
 	game->img.img = mlx_new_image(game->mlx, game->win_size.width,
 			game->win_size.height);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
@@ -58,7 +67,11 @@ int	game_init(t_game *game, t_map *map)
 	game->map = map;
 	game->map->count_collect = 0;
 	game->map->player.step = 0;
-	sprite_init(game);
+	sprite_init(game, "sprites/arbres.xpm", SPRITE_TREE);
+	sprite_init(game, "sprites/chemin.xpm", SPRITE_PATH);
+	sprite_init(game, "sprites/ermango.xpm", SPRITE_ERMANGO);
+	sprite_init(game, "sprites/hole.xpm", SPRITE_HOLE);
+	sprite_init(game, "sprites/mango.xpm", SPRITE_MANGO);
 	if (!game->mlx || !game->map)
 		return (0);
 	return (1);

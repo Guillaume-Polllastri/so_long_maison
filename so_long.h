@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/23 11:26:03 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:16:03 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@
 # define RIGHT_ARROW 65363
 # define DOWN_ARROW 65364
 
-# define SPRITE_WATER 0
+# define SPRITE_TREE 0
+# define SPRITE_PATH 1
+# define SPRITE_ERMANGO 2
+# define SPRITE_HOLE 3
+# define SPRITE_MANGO 4
 
 typedef enum e_elem
 {
@@ -84,6 +88,7 @@ typedef struct s_sprite
 {
 	int		*buffer;
 	t_size	size;
+	t_img	asset;
 }	t_sprite;
 
 typedef struct s_game
@@ -94,13 +99,12 @@ typedef struct s_game
 	t_size		win_size;
 	t_img		img;
 	t_img		asset;
-	t_sprite	sprites[4];
+	t_sprite	sprites[5];
 	int			box_size;
 }	t_game;
 
 int		parse_map(t_map *map, char *path);
 void	*ft_realloc(void *ptr, size_t old_elm, size_t new_elm, size_t size_elm);
-int		print_map(t_map *map);
 int		game_loop(t_game *game);
 int		game_init(t_game *game, t_map *map);
 int		game_open_window(t_game *game, int width, int height);
@@ -112,6 +116,9 @@ int		ft_key_hook(int keycode, t_game *game);
 int		close_window(t_game *game);
 int		flood_fill(t_map *map);
 void	ft_delay(void);
-void	sprite_init(t_game *game);
-
+void	sprite_init(t_game *game, char *path, int id);
+int		get_color_from_sprite(t_game *game, t_sprite *sprite,
+			t_point *pixel);
+void	draw_color(t_game *game, t_point *point, t_point *pixel);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 #endif

@@ -1,7 +1,7 @@
 /* XPM */
 static char * ermango_xpm[] = {
 "24 27 399 2",
-"  	c #FFFFFF",
+"  	c #000000",
 ". 	c #372D2B",
 "+ 	c #27221F",
 "@ 	c #261C1A",
