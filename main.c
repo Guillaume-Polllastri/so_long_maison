@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/23 16:15:14 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/23 23:08:33 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	main(void)
 		return (1);
 	if (!game_loop(&game))
 		return (1);
+	game_destroy(&game);
 	return (0);
 }
