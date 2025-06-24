@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 18:48:46 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:41:40 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mlx.h"
 #include "ft_printf.h"
 #include <stdlib.h>
+#include "libft.h"
 
 static int	game_do_loop(t_game *game)
 {
@@ -64,15 +65,21 @@ int	game_open_window(t_game *game, int width, int height)
 
 int	game_init(t_game *game, t_map *map)
 {
+	ft_bzero(game, sizeof(t_game));
 	game->mlx = mlx_init();
 	game->map = map;
 	game->map->count_collect = 0;
 	game->map->player.step = 0;
-	sprite_init(game, "sprites/arbres.xpm", SPRITE_TREE);
-	sprite_init(game, "sprites/chemin.xpm", SPRITE_PATH);
-	sprite_init(game, "sprites/ermango.xpm", SPRITE_ERMANGO);
-	sprite_init(game, "sprites/hole.xpm", SPRITE_HOLE);
-	sprite_init(game, "sprites/mango.xpm", SPRITE_MANGO);
+	if (!sprite_init(game, "sprites/arbres.xpm", SPRITE_TREE))
+		return (0);
+	if (!sprite_init(game, "sprites/chemin.xpm", SPRITE_PATH))
+		return (0);
+	if (!sprite_init(game, "sprites/ermango.xpm", SPRITE_ERMANGO))
+		return (0);
+	if (!sprite_init(game, "sprites/hole.xpm", SPRITE_HOLE))
+		return (0);
+	if (!sprite_init(game, "sprites/mango.xpm", SPRITE_MANGO))
+		return (0);
 	if (!game->mlx || !game->map)
 		return (0);
 	return (1);
@@ -80,9 +87,17 @@ int	game_init(t_game *game, t_map *map)
 
 void	game_destroy(t_game *game)
 {
-	(void) game;
-	// mlx_destroy_window(game->mlx, game->mlx_win);
-	// mlx_destroy_image(game->mlx, game->img.img);
+	int	i;
+
+	map_destroy(game->map);
+	mlx_destroy_image(game->mlx, game->img.img);
+	i = 0;
+	while (i < SPRITE_COUNT)
+	{
+		mlx_destroy_image(game->mlx, game->sprites[i].asset.img);
+		i++;
+	}
+	mlx_destroy_display(game->mlx);
 }
 
 int	game_loop(t_game *game)

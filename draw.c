@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 11:52:33 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:05:31 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	draw_entity(t_game *game, t_point *point)
 int	draw_frame(t_game *game)
 {
 	t_point	point;
+	char	*step;
 
 	draw_background(game);
 	point.x = 0;
@@ -91,8 +92,10 @@ int	draw_frame(t_game *game)
 	}
 	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
+	step = ft_itoa(game->map->player.step);
 	mlx_string_put(game->mlx, game->mlx_win, game->win_size.width / 2,
-		10, 0xd9c407, ft_itoa(game->map->player.step));
+		10, 0xd9c407, step);
+	free(step);
 	return (0);
 }
 

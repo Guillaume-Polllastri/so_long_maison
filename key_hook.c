@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:50:03 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 19:06:12 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 22:32:08 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 #include "libft.h"
-
-static void	move(t_game *game)
-{
-
-}
 
 static void	key_move(int keycode, t_game *game, int row, int col)
 {

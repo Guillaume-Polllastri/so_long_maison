@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 10:50:38 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 18:01:59 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 22:57:33 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 #include "mlx.h"
 #include "libft.h"
 
-void	sprite_init(t_game *game, char *path, int id)
+int	sprite_init(t_game *game, char *path, int id)
 {
-	game->sprites->asset.img = mlx_xpm_file_to_image(game->mlx, path,
-			&game->sprites->asset.size.width,
-			&game->sprites->asset.size.height);
+	game->sprites[id].asset.img = mlx_xpm_file_to_image(game->mlx, path,
+			&game->sprites[id].asset.size.width,
+			&game->sprites[id].asset.size.height);
+	if (!game->sprites[id].asset.img)
+		return (0);
 	game->sprites[id].buffer = (int *)
-		mlx_get_data_addr(game->sprites->asset.img,
-			&game->sprites->asset.bits_per_pixel,
-			&game->sprites->asset.line_length,
-			&game->sprites->asset.endian);
+		mlx_get_data_addr(game->sprites[id].asset.img,
+			&game->sprites[id].asset.bits_per_pixel,
+			&game->sprites[id].asset.line_length,
+			&game->sprites[id].asset.endian);
 	ft_memcpy(&game->sprites[id].size,
-		&game->sprites->asset.size, sizeof(t_size));
+		&game->sprites[id].asset.size, sizeof(t_size));
+	return (1);
 }
 
 int	get_color_from_sprite(t_game *game, t_sprite *sprite,

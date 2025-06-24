@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 18:48:12 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:36:48 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define SPRITE_ERMANGO 2
 # define SPRITE_HOLE 3
 # define SPRITE_MANGO 4
+
+# define SPRITE_COUNT 5
 
 typedef enum e_elem
 {
@@ -115,12 +117,12 @@ void	draw_player(t_game *game);
 int		ft_key_hook(int keycode, t_game *game);
 int		close_window(t_game *game);
 int		flood_fill(t_map *map);
-void	ft_delay(void);
-void	sprite_init(t_game *game, char *path, int id);
+int		sprite_init(t_game *game, char *path, int id);
 int		get_color_from_sprite(t_game *game, t_sprite *sprite,
 			t_point *pixel);
 void	draw_color(t_game *game, t_point *point, t_point *pixel);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int		check_file_extend(char *filename);
 size_t	ft_strlen_no_nl(char *str);
+void	map_destroy(t_map *map);
 #endif

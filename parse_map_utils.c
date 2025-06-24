@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:01:34 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 18:58:02 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:33:40 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,17 @@ int	flood_fill(t_map *map)
 	col = map->player.coord.x;
 	map_cpy = copy_map(map);
 	if (!fill(map_cpy, row, col))
-		return (0);
+	{
+		map_destroy(map_cpy);
+		return (free(map_cpy), 0);
+	}
 	if ((map_cpy->nb_test_collectible != map->nb_collect)
 		|| (map_cpy->nb_test_exit != map->nb_exit))
 	{
-		return (0);
+		map_destroy(map_cpy);
+		return (free(map_cpy), 0);
 	}
+	map_destroy(map_cpy);
+	free(map_cpy);
 	return (1);
 }
