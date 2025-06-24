@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 12:55:52 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:49:29 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 #include "get_next_line.h"
 #include "libft.h"
 #include "ft_printf.h"
-
-static size_t	ft_strlen_no_nl(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
-}
 
 static int	parse_line(t_map *map, char *line)
 {

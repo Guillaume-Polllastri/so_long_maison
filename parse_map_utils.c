@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:01:34 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/23 16:40:21 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:58:02 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ static int	fill(t_map *map, int row, int col)
 	return (1);
 }
 
-static t_map	*copy_map(t_map *map)
+static t_map	*init_copy_map(t_map *map)
 {
 	t_map	*copy;
-	size_t	y;
-	size_t	x;
 
 	if (!map || !map->data)
 		return (NULL);
@@ -65,6 +63,16 @@ static t_map	*copy_map(t_map *map)
 		free(copy);
 		return (NULL);
 	}
+	return (copy);
+}
+
+static t_map	*copy_map(t_map *map)
+{
+	t_map	*copy;
+	size_t	y;
+	size_t	x;
+
+	copy = init_copy_map(map);
 	y = 0;
 	while (y < map->heigth)
 	{
@@ -73,9 +81,7 @@ static t_map	*copy_map(t_map *map)
 		{
 			while (y > 0)
 				free(copy->data[--y]);
-			free(copy->data);
-			free(copy);
-			return (NULL);
+			return (free(copy->data), free(copy), NULL);
 		}
 		x = 0;
 		while (x < map->width)

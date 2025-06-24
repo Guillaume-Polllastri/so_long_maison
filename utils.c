@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:51:11 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 14:46:17 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:41:09 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ int	check_file_extend(char *filename)
 		return (1);
 	}
 	return (ft_strncmp(str, ".ber", 5));
+}
+
+size_t	ft_strlen_no_nl(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
 }

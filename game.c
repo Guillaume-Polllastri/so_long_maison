@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 18:27:22 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:48:46 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ int	game_init(t_game *game, t_map *map)
 
 void	game_destroy(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->mlx_win);
-	mlx_destroy_image(game->mlx, game->img.img);
+	(void) game;
+	// mlx_destroy_window(game->mlx, game->mlx_win);
+	// mlx_destroy_image(game->mlx, game->img.img);
 }
 
 int	game_loop(t_game *game)
