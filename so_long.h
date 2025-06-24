@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/23 16:17:37 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:38:32 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ int		get_color_from_sprite(t_game *game, t_sprite *sprite,
 			t_point *pixel);
 void	draw_color(t_game *game, t_point *point, t_point *pixel);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		check_file_extend(char *filename);
 #endif
