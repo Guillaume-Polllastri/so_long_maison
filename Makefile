@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/06/24 23:19:08 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/25 15:53:04 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,22 +23,29 @@ SRC = 	main.c \
 		parse_map_utils.c \
 		sprite.c \
 		map.c
+
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra -I./minilibx-linux -I. -g
-LDFLAGS = -L./minilibx-linux -lmlx -L. -lftprintf -lX11 -lXext -lm -lft
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -I./minilibx-linux -I./includes -I./libft -g
+LDFLAGS = -L./minilibx-linux -lmlx -L./libft -lft -L. -lftprintf -lX11 -lXext -lm
 
-all: $(NAME)
+all: libft/libft.a $(NAME)
+
+libft/libft.a:
+	@$(MAKE) -C libft
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(CFLAGS) $(LDFLAGS) -o $(NAME)
 
 clean:
 	@rm -f $(OBJ)
-	@echo "Suppression des fichiers objets"
+	@$(MAKE) -C libft clean
+	@echo "Suppression des fichiers objets (project + libft)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Suppression des fichiers objets et de la librairie"
+	@$(MAKE) -C libft fclean
+	@echo "Suppression de l'exécutable et de la librairie"
 
 re: fclean all
