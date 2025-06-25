@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 23:50:01 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:02:55 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	game_do_loop(t_game *game)
 	count = game->map->count_collect;
 	if (game->map->data[row][col] == EXIT && count == game->map->nb_collect)
 	{
-		ft_printf("GG YOU WIN!!!!!!!!");
+		ft_printf("GG YOU WIN THIS GAME IN %d STEPS !!!\n",
+			game->map->player.step);
 		mlx_destroy_window(game->mlx, game->mlx_win);
 		return (0);
 	}
