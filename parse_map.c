@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 23:09:50 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/25 09:53:45 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "get_next_line.h"
 #include "libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	parse_line(t_map *map, char *line)
 {
@@ -55,7 +56,7 @@ static int	parse_line(t_map *map, char *line)
 			map->data[map->heigth][i] = MONSTER;
 		else if (line[i] != '\n')
 		{
-			ft_printf("Read error, unknown element : %c\n", line[i]);
+			ft_printf("Error\nRead error, unknown element : %c\n", line[i]);
 			return (0);
 		}
 		i++;
@@ -68,17 +69,17 @@ static int	check_nb_entity(t_map *map)
 {
 	if (map->nb_player != 1)
 	{
-		ft_printf("The game requires 1 Player\n");
+		ft_printf("Error\nThe game requires 1 Player\n");
 		return (0);
 	}
 	if (map->nb_exit != 1)
 	{
-		ft_printf("The game requires 1 Exit\n");
+		ft_printf("Error\nThe game requires 1 Exit\n");
 		return (0);
 	}
 	if (!map->nb_collect)
 	{
-		ft_printf("The game requires at least 1 Collectible\n");
+		ft_printf("Error\nThe game requires at least 1 Collectible\n");
 		return (0);
 	}
 	return (1);
@@ -94,7 +95,7 @@ static int	check_wall(t_map *map)
 		if ((map->data[0][i] != WALL) ||
 			(map->data[map->heigth - 1][i] != WALL))
 		{
-			ft_printf("La map n'est pas entoure de mur\n");
+			ft_printf("Error\nThe map is not surrounded by walls\n");
 			return (0);
 		}
 		i++;
@@ -104,7 +105,7 @@ static int	check_wall(t_map *map)
 	{
 		if ((map->data[i][0] != WALL) || (map->data[i][map->width -1] != WALL))
 		{
-			ft_printf("La map n'est pas entoure de mur\n");
+			ft_printf("Error\nThe map is not surrounded by walls\n");
 			return (0);
 		}
 		i++;
@@ -120,12 +121,17 @@ int	parse_map(t_map *map, char *path)
 	ft_bzero(map, sizeof(*map));
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
+	if (!line)
+	{
+		ft_printf("Error\nThere is no map\n");
+		return (0);
+	}
 	map->width = ft_strlen_no_nl(line);
 	while (line)
 	{
 		if (ft_strlen_no_nl(line) != map->width)
 		{
-			ft_printf("Read error, map size is incorrect\n");
+			ft_printf("Error\nRead error, map size is incorrect\n");
 			return (free(line), 0);
 		}
 		if (!parse_line(map, line))
@@ -139,7 +145,7 @@ int	parse_map(t_map *map, char *path)
 		return (0);
 	if (!flood_fill(map))
 	{
-		ft_printf("Collectible or exit are not accessible\n");
+		ft_printf("Error\nCollectible or exit are not accessible\n");
 		return (0);
 	}
 	return (1);
