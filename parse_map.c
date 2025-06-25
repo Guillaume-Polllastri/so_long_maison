@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/25 09:53:45 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:38:22 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,29 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include <stdio.h>
+
+static void	check_player_collect_exit(t_map *map, char *line, int i)
+{
+	if (line[i] == 'P')
+	{
+		map->player.coord.x = i;
+		map->player.coord.y = map->heigth;
+		map->nb_player++;
+		map->data[map->heigth][i] = PATH;
+	}
+	else if (line[i] == 'C')
+	{
+		map->nb_collect++;
+		map->data[map->heigth][i] = COLLECTIBLE;
+	}
+	else if (line[i] == 'E')
+	{
+		map->end.x = i;
+		map->end.y = map->heigth;
+		map->nb_exit++;
+		map->data[map->heigth][i] = EXIT;
+	}
+}
 
 static int	parse_line(t_map *map, char *line)
 {
@@ -33,27 +56,8 @@ static int	parse_line(t_map *map, char *line)
 			map->data[map->heigth][i] = PATH;
 		else if (line[i] == '1')
 			map->data[map->heigth][i] = WALL;
-		else if (line[i] == 'P')
-		{
-			map->player.coord.x = i;
-			map->player.coord.y = map->heigth;
-			map->nb_player++;
-			map->data[map->heigth][i] = PATH;
-		}
-		else if (line[i] == 'C')
-		{
-			map->nb_collect++;
-			map->data[map->heigth][i] = COLLECTIBLE;
-		}
-		else if (line[i] == 'E')
-		{
-			map->end.x = i;
-			map->end.y = map->heigth;
-			map->nb_exit++;
-			map->data[map->heigth][i] = EXIT;
-		}
-		else if (line[i] == 'M')
-			map->data[map->heigth][i] = MONSTER;
+		else if (line[i] == 'P' || line[i] == 'C' || line[i] == 'E')
+			check_player_collect_exit(map, line, i);
 		else if (line[i] != '\n')
 		{
 			ft_printf("Error\nRead error, unknown element : %c\n", line[i]);
@@ -62,54 +66,6 @@ static int	parse_line(t_map *map, char *line)
 		i++;
 	}
 	map->heigth += 1;
-	return (1);
-}
-
-static int	check_nb_entity(t_map *map)
-{
-	if (map->nb_player != 1)
-	{
-		ft_printf("Error\nThe game requires 1 Player\n");
-		return (0);
-	}
-	if (map->nb_exit != 1)
-	{
-		ft_printf("Error\nThe game requires 1 Exit\n");
-		return (0);
-	}
-	if (!map->nb_collect)
-	{
-		ft_printf("Error\nThe game requires at least 1 Collectible\n");
-		return (0);
-	}
-	return (1);
-}
-
-static int	check_wall(t_map *map)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < map->width)
-	{
-		if ((map->data[0][i] != WALL) ||
-			(map->data[map->heigth - 1][i] != WALL))
-		{
-			ft_printf("Error\nThe map is not surrounded by walls\n");
-			return (0);
-		}
-		i++;
-	}
-	i = 1;
-	while (i < map->heigth)
-	{
-		if ((map->data[i][0] != WALL) || (map->data[i][map->width -1] != WALL))
-		{
-			ft_printf("Error\nThe map is not surrounded by walls\n");
-			return (0);
-		}
-		i++;
-	}
 	return (1);
 }
 
@@ -122,10 +78,7 @@ int	parse_map(t_map *map, char *path)
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
 	if (!line)
-	{
-		ft_printf("Error\nThere is no map\n");
-		return (0);
-	}
+		return (ft_printf("Error\nThere is no map\n"), 0);
 	map->width = ft_strlen_no_nl(line);
 	while (line)
 	{
@@ -139,15 +92,8 @@ int	parse_map(t_map *map, char *path)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (!check_wall(map))
+	if (!check_map(map))
 		return (0);
-	if (!check_nb_entity(map))
-		return (0);
-	if (!flood_fill(map))
-	{
-		ft_printf("Error\nCollectible or exit are not accessible\n");
-		return (0);
-	}
 	return (1);
 }
 //TODO Gerer les rectangles

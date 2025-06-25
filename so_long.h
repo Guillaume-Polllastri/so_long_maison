@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:07:18 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 23:36:48 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:37:59 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef enum e_elem
 {
 	WALL,
 	PATH,
-	MONSTER,
 	PLAYER,
 	COLLECTIBLE,
 	EXIT
@@ -125,4 +124,5 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int		check_file_extend(char *filename);
 size_t	ft_strlen_no_nl(char *str);
 void	map_destroy(t_map *map);
+int		check_map(t_map *map);
 #endif

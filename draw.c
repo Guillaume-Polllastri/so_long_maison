@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 23:05:31 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:44:05 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 void	draw_player(t_game *game)
 {
 	t_point	pixel;
-	size_t	toto;
 
 	pixel.x = 0;
 	pixel.y = 0;
-	// toto = (game->win_size.height - (game->map->heigth * len_y)) / 2;
-	toto = 0;
-	pixel.y = game->map->player.coord.y * game->box_size + toto;
+	pixel.y = game->map->player.coord.y * game->box_size;
 	while (pixel.y < (int)((game->map->player.coord.y + 1)
-		* game->box_size + toto))
+		* game->box_size))
 	{
 		pixel.x = game->map->player.coord.x * game->box_size;
 		while (pixel.x < (int)((game->map->player.coord.x + 1)
@@ -55,12 +52,9 @@ void	draw_player(t_game *game)
 static void	draw_entity(t_game *game, t_point *point)
 {
 	t_point	pixel;
-	size_t	pos;
 
-	pos = (game->win_size.height - (game->map->heigth * game->box_size)) / 2;
-	pos = 0;
-	pixel.y = point->y * game->box_size + pos;
-	while (pixel.y < (int)((point->y + 1) * game->box_size + pos))
+	pixel.y = point->y * game->box_size;
+	while (pixel.y < (int)((point->y + 1) * game->box_size))
 	{
 		pixel.x = point->x * game->box_size;
 		while (pixel.x < (int)((point->x + 1) * game->box_size))

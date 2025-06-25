@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:50:03 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 22:32:08 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:43:02 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 #include "libft.h"
+
+static void	key_move_complementary(int keycode, t_game *game, int row, int col)
+{
+	if (keycode == S || keycode == DOWN_ARROW)
+	{
+		if (game->map->data[row + 1][col] != WALL)
+		{
+			game->map->player.coord.y += 1;
+			game->map->player.step++;
+		}
+	}
+	if (keycode == D || keycode == RIGHT_ARROW)
+	{
+		if (game->map->data[row][col + 1] != WALL)
+		{
+			game->map->player.coord.x += 1;
+			game->map->player.step++;
+		}
+	}
+}
 
 static void	key_move(int keycode, t_game *game, int row, int col)
 {
@@ -34,22 +54,7 @@ static void	key_move(int keycode, t_game *game, int row, int col)
 			game->map->player.step++;
 		}
 	}
-	if (keycode == S || keycode == DOWN_ARROW)
-	{
-		if (game->map->data[row + 1][col] != WALL)
-		{
-			game->map->player.coord.y += 1;
-			game->map->player.step++;
-		}
-	}
-	if (keycode == D || keycode == RIGHT_ARROW)
-	{
-		if (game->map->data[row][col + 1] != WALL)
-		{
-			game->map->player.coord.x += 1;
-			game->map->player.step++;
-		}
-	}
+	key_move_complementary(keycode, game, row, col);
 }
 
 static void	step_count(t_game *game, int tmp)
