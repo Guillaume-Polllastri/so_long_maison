@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:35:24 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/25 12:44:05 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:41:58 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	set_pixel(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -40,7 +40,7 @@ void	draw_player(t_game *game)
 		while (pixel.x < (int)((game->map->player.coord.x + 1)
 			* game->box_size))
 		{
-			my_mlx_pixel_put(&game->img, pixel.x, pixel.y,
+			set_pixel(&game->img, pixel.x, pixel.y,
 				get_color_from_sprite(game,
 					&game->sprites[SPRITE_ERMANGO], &pixel));
 			pixel.x++;
@@ -88,7 +88,7 @@ int	draw_frame(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
 	step = ft_itoa(game->map->player.step);
 	mlx_string_put(game->mlx, game->mlx_win, game->win_size.width / 2,
-		10, 0xd9c407, step);
+		10, 0xFFFFFFFF, step);
 	free(step);
 	return (0);
 }
@@ -103,7 +103,7 @@ int	draw_background(t_game *game)
 		pixel_bg.x = 0;
 		while (pixel_bg.x < game->win_size.width)
 		{
-			my_mlx_pixel_put(&game->img, pixel_bg.x, pixel_bg.y,
+			set_pixel(&game->img, pixel_bg.x, pixel_bg.y,
 				get_color_from_sprite(game, &game->sprites[SPRITE_PATH],
 					&pixel_bg));
 			pixel_bg.x++;

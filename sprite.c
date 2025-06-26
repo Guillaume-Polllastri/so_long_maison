@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 10:50:38 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/24 22:57:33 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:40:31 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ int	get_color_from_sprite(t_game *game, t_sprite *sprite,
 void	draw_color(t_game *game, t_point *point, t_point *pixel)
 {
 	if (game->map->data[point->y][point->x] == WALL)
-		my_mlx_pixel_put(&game->img, pixel->x, pixel->y,
+		set_pixel(&game->img, pixel->x, pixel->y,
 			get_color_from_sprite(game, &game->sprites[SPRITE_TREE], pixel));
 	else if (game->map->data[point->y][point->x] == PATH)
-		my_mlx_pixel_put(&game->img, pixel->x, pixel->y,
+		set_pixel(&game->img, pixel->x, pixel->y,
 			get_color_from_sprite(game, &game->sprites[SPRITE_PATH], pixel));
 	else if (game->map->data[point->y][point->x] == COLLECTIBLE)
-		my_mlx_pixel_put(&game->img, pixel->x, pixel->y,
+		set_pixel(&game->img, pixel->x, pixel->y,
 			get_color_from_sprite(game, &game->sprites[SPRITE_MANGO], pixel));
 	else if (game->map->data[point->y][point->x] == EXIT)
-		my_mlx_pixel_put(&game->img, pixel->x, pixel->y,
+		set_pixel(&game->img, pixel->x, pixel->y,
 			get_color_from_sprite(game, &game->sprites[SPRITE_HOLE], pixel));
 }
