@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 10:13:23 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/25 09:35:59 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/28 22:18:21 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		ft_bzero(&game, sizeof(game));
+		ft_bzero(&map, sizeof(map));
 		if (check_file_extend(av[1]))
 			return (1);
 		if (!parse_map(&map, av[1]))

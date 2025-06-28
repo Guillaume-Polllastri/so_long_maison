@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/25 12:38:22 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/28 22:16:18 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	parse_line(t_map *map, char *line)
 		return (0);
 	i = 0;
 	map->data[map->heigth] = malloc(sizeof(t_elem) * map->width);
+	if (!map->data[map->heigth])
+		return (free(map->data), 0);
 	while (line[i])
 	{
 		if (line[i] == '0')

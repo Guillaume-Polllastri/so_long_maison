@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:50:03 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/25 12:43:02 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/28 22:11:03 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ static void	step_count(t_game *game, int tmp)
 
 int	close_window(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->mlx_win);
-	exit(0);
+	mlx_loop_end(game->mlx);
 	return (0);
 }
 
@@ -87,10 +86,7 @@ int	ft_key_hook(int keycode, t_game *game)
 		game->map->count_collect++;
 	}
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(game->mlx, game->mlx_win);
-		exit(0);
-	}
+		close_window(game);
 	key_move(keycode, game, row, col);
 	step_count(game, tmp);
 	return (0);
