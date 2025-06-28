@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/06/25 15:53:04 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/28 19:54:15 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,13 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I./minilibx-linux -I./includes -I./libft -g
 LDFLAGS = -L./minilibx-linux -lmlx -L./libft -lft -L. -lftprintf -lX11 -lXext -lm
 
-all: libft/libft.a $(NAME)
+all: libft/libft.a minilibx $(NAME)
 
 libft/libft.a:
 	@$(MAKE) -C libft
+
+minilibx:
+	@$(MAKE) -C minilibx-linux
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(CFLAGS) $(LDFLAGS) -o $(NAME)
