@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/28 22:20:07 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/28 22:24:53 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	game_do_loop(t_game *game)
 	{
 		ft_printf("GG YOU WIN THIS GAME IN %d STEPS !!!\n",
 			game->map->player.step);
-		mlx_destroy_window(game->mlx, game->mlx_win);
+		close_window(game);
 		return (0);
 	}
 	draw_frame(game);
