@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 10:11:30 by gpollast          #+#    #+#              #
-#    Updated: 2025/06/28 19:54:15 by gpollast         ###   ########.fr        #
+#    Updated: 2025/06/30 09:48:02 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ libft/libft.a:
 
 minilibx:
 	@$(MAKE) -C minilibx-linux
+
+val: $(NAME)
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) $(ARGS)
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(CFLAGS) $(LDFLAGS) -o $(NAME)
