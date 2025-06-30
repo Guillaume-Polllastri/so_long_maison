@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:13:32 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/30 09:37:43 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:42:08 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	parse_map(t_map *map, char *path)
 		if (ft_strlen_no_nl(line) != map->width)
 		{
 			ft_printf("Error\nRead error, map size is incorrect\n");
-			return (close(fd), free(line), 0);
+			return (get_next_line(-1), close(fd), free(line), 0);
 		}
 		if (!parse_line(map, line))
 			return (close(fd), free(line), 0);

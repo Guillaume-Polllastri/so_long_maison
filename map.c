@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 23:12:28 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/25 12:39:34 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:31:19 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	map_destroy(t_map *map)
 	size_t	y;
 
 	y = 0;
+	if (!map || !map->data)
+		return ;
 	while (y < map->heigth)
 	{
 		free(map->data[y]);

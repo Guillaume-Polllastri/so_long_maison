@@ -6,11 +6,12 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:24:01 by gpollast          #+#    #+#             */
-/*   Updated: 2025/05/14 17:44:26 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:05:48 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -23,16 +24,6 @@ void	ft_bzero(void *s, size_t n)
 		ptr++;
 		n--;
 	}
-}
-
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }
 
 static char	*read_buffer(char **buffer)
@@ -73,13 +64,29 @@ static ssize_t	write_buffer(int fd, char **buffer)
 	return (status);
 }
 
+static int	check_gnl(int fd, char *buffer)
+{
+	if (fd == -1)
+	{
+		if (buffer)
+		{
+			free(buffer);
+			buffer = NULL;
+		}
+		return (0);
+	}
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	return (1);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char		*line;
 	ssize_t		status;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (!check_gnl(fd, buffer))
 		return (NULL);
 	status = 1;
 	while (status > 0)
