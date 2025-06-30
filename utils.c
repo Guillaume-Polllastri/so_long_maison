@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:51:11 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/28 22:13:24 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/30 10:58:42 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int	check_file_extend(char *filename)
 	if (!str)
 	{
 		ft_printf("Error\nWrong name file\n");
-		return (1);
+		return (0);
 	}
 	if (ft_strncmp(str, ".ber", 5))
 	{
 		ft_printf("Error\nWrong name file\n");
-		return (1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 
 size_t	ft_strlen_no_nl(char *str)

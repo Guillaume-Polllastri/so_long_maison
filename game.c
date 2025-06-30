@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:38:42 by gpollast          #+#    #+#             */
-/*   Updated: 2025/06/28 22:24:53 by gpollast         ###   ########.fr       */
+/*   Updated: 2025/06/30 10:56:00 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,30 @@ void	game_destroy(t_game *game)
 {
 	int	i;
 
-	map_destroy(game->map);
-	mlx_destroy_image(game->mlx, game->img.img);
-	i = 0;
-	while (i < SPRITE_COUNT)
+	if (!game)
+		return ;
+	if (game->map)
+		map_destroy(game->map);
+	if (game->mlx)
 	{
-		mlx_destroy_image(game->mlx, game->sprites[i].asset.img);
-		i++;
+		if (game->mlx_win)
+			mlx_destroy_window(game->mlx, game->mlx_win);
+		if (game->img.img)
+			mlx_destroy_image(game->mlx, game->img.img);
+		i = 0;
+		while (i < SPRITE_COUNT)
+		{
+			if (game->sprites[i].asset.img)
+				mlx_destroy_image(game->mlx, game->sprites[i].asset.img);
+			i++;
+		}
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
 }
 
 int	game_loop(t_game *game)
 {
 	mlx_loop(game->mlx);
-	mlx_destroy_window(game->mlx, game->mlx_win);
 	return (1);
 }
