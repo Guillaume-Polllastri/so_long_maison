@@ -176,6 +176,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 				method = 1;
 				if (!(colors_direct = malloc((cpp==2?65536:256)*sizeof(int))))
 						RETURN;
+				memset(colors_direct, 0, (cpp==2?65536:256)*sizeof(int));
 		}
 		else
 				if (!(colors = malloc(nc*sizeof(*colors))))
